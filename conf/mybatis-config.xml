@@ -18,6 +18,7 @@
                 <property name="password" value="123456" />
             </dataSource>
         </environment>
+
     </environments>
     <!-- 引入SQL映射文件,Mapper映射文件 	-->
     <mappers>
