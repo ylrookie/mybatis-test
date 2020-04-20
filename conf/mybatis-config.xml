@@ -4,6 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--配置 -->
 <configuration>
+    <!-- settings :包含了重要的设置项 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!-- typeAliases :别名处理 -->
+    <typeAliases>
+        <typeAlias type="mybatisCS.beansTest" alias="beansTest" ></typeAlias>
+    </typeAliases>
+    
     <!-- 数据库连接环境的配置 -->
     <!-- 环境们 -->
     <environments default="development">
@@ -18,6 +27,16 @@
                 <property name="password" value="123456" />
             </dataSource>
         </environment>
+
+        <!--<environment id="test">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_con"></property>
+                <property name="username" value="root"></property>
+                <property name="password" value="123456"></property>
+            </dataSource>
+        </environment>-->
 
     </environments>
     <!-- 引入SQL映射文件,Mapper映射文件 	-->

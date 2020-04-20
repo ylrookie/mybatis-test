@@ -3,9 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Dao.EmployeeDao">
-    <select id="getEmployeeById" resultType="mybatisCS.beansTest">
+    <select id="getEmployeeById" resultType="beansTest">
       <!-- select * from tbl_employee where id = #{id} -->
        select id,last_name lastName,email,gender from tbl_employee where id = #{id}
     </select>
 
+    <select id="getEmployeeByIdandLastName" resultType="beansTest">
+        <!-- select * from tbl_employee where id = #{id} -->
+        select id,last_name lastName,email,gender from tbl_employee where   last_name = #{1} and id = #{0}
+    </select>
+
+    <!-- public void insertEmployee(beansTest  beanstest); -->
+    <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_employee( `last_name`, `email`, `gender`) VALUES (#{lastName},#{email},#{gender})
+    </insert>
+
+    <!-- public void updateEmployee(beansTest  beanstest) -->
+    <update id="updateEmployee">
+        update tbl_employee set last_Name = #{lastName},email = #{email},gender = #{gender} where id = #{id}
+    </update>
+
+    <!-- public void deleteEmployee(Integer id) -->
+    <delete id="deleteEmployee">
+        delete from tbl_employee where id = #{id}
+    </delete>
 </mapper>
