@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class testSQLSession {
     public static void main(String[] args) throws Exception{
@@ -63,9 +65,9 @@ public class testSQLSession {
 //            beansTest beans = dao.getEmployeeById(2);
 //            System.out.println(beans);
             //插入
-            beansTest beans1 = new beansTest(null,"XX","xx.com",3);
+            beansTest beans1 = new beansTest(null,"TT","tt.com",3);
             dao.insertEmployee(beans1);
-            System.out.println(beans1.getId());
+            //System.out.println(beans1.getId());
             beansTest beans = dao.getEmployeeById(beans1.getId());
             System.out.println(beans);
 
@@ -93,6 +95,13 @@ public class testSQLSession {
             //查询
             beansTest beans = dao1.getEmployeeByIdandLastName(129,"xx");
             System.out.println(beans);
+            /*Map<String,Object> map = new HashMap<>();
+            map.put("id",126);
+            map.put("ln","kk");
+
+            beansTest beans = dao1.getEmployeeByMap(map);*/
+            System.out.println(beans);
+
         }finally {
             session.close();
         }

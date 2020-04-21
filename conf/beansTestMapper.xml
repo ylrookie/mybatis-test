@@ -13,6 +13,11 @@
         select id,last_name lastName,email,gender from tbl_employee where   last_name = #{1} and id = #{0}
     </select>
 
+    <!-- public beansTest getEmployeeByMap(Map<String,Object> map) -->
+    <select id="getEmployeeByMap" resultType="beansTest">
+        select id,last_name lastName,email,gender from tbl_employee where   last_name = #{ln} and id = #{id}
+    </select>
+
     <!-- public void insertEmployee(beansTest  beanstest); -->
     <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tbl_employee( `last_name`, `email`, `gender`) VALUES (#{lastName},#{email},#{gender})

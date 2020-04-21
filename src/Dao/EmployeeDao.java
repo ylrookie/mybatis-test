@@ -1,5 +1,8 @@
 package Dao;
 import mybatisCS.beansTest;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 public interface EmployeeDao {
 
@@ -15,5 +18,9 @@ public interface EmployeeDao {
     //删除一个员工信息
     public void deleteEmployee(Integer id);
 
-    public beansTest getEmployeeByIdandLastName(Integer id,String lastName);
+    //多个参数
+    public beansTest getEmployeeByIdandLastName(@Param("id") Integer id, @Param("lastName") String lastName);
+
+    //封装为map
+    public beansTest getEmployeeByMap(Map<String,Object> map);
 }
