@@ -1,7 +1,9 @@
 package Dao;
 import mybatisCS.beansTest;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface EmployeeDao {
@@ -23,4 +25,14 @@ public interface EmployeeDao {
 
     //封装为map
     public beansTest getEmployeeByMap(Map<String,Object> map);
+
+    //查询多行返回一个对象的集合
+    public List<beansTest>  selectList();
+
+    //查询一条数据，结果分装为map
+    public Map<String,Object>  getEmployeeByIdReturnMap(Integer id);
+
+    //查询多条数据返回map
+    @MapKey("id")  //指定使用对象的那个属性作为map的key
+    public Map<Integer,beansTest> getEmployeemoreReturnMap();
 }

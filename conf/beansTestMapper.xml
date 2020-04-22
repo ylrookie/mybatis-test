@@ -18,6 +18,21 @@
         select id,last_name lastName,email,gender from tbl_employee where   last_name = #{ln} and id = #{id}
     </select>
 
+    <!-- public List<beansTest>  selectList() -->
+    <select id="selectList" resultType="beansTest">
+        select id,last_name lastName,email,gender from tbl_employee
+    </select>
+
+    <!-- public Map<String,Object>  getEmployeeById(); -->
+    <select id="getEmployeeByIdReturnMap" resultType="map">
+        select id,last_name lastName,email,gender from tbl_employee where id = #{id}
+    </select>
+
+    <!-- public Map<Integer,beansTest> getEmployeemoreReturnMap(); -->
+    <select id="getEmployeemoreReturnMap" resultType="beansTest">
+        select id,last_name lastName,email,gender from tbl_employee
+    </select>
+
     <!-- public void insertEmployee(beansTest  beanstest); -->
     <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tbl_employee( `last_name`, `email`, `gender`) VALUES (#{lastName},#{email},#{gender})

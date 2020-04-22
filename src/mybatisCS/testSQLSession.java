@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class testSQLSession {
@@ -104,6 +105,27 @@ public class testSQLSession {
 
         }finally {
             session.close();
+        }
+
+    }
+
+    @Test
+    public void selectMore()throws  Exception{
+        SqlSessionFactory sqlSessionFactory = getFactory();
+        SqlSession sess = sqlSessionFactory.openSession();
+
+        try {
+            EmployeeDao dao = sess.getMapper(EmployeeDao.class);
+            /*List<beansTest> list = dao.selectList();
+            System.out.println(list);*/
+
+            /*Map<String,Object> map = dao.getEmployeeByIdReturnMap(123);
+            System.out.println(map);*/
+
+            Map<Integer,beansTest> map = dao.getEmployeemoreReturnMap();
+            System.out.println(map);
+        }finally {
+            sess.close();
         }
 
     }
