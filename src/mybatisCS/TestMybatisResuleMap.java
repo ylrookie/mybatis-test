@@ -1,5 +1,6 @@
 package mybatisCS;
 
+import Dao.DeptResultMap;
 import Dao.EmployeeMapperResultMap;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -54,6 +55,34 @@ public class TestMybatisResuleMap {
             beansTest beans = em.getEmployeeDeptStep(123);
             System.out.println(beans.getLastName());
             //System.out.println(beans.getDept());
+        }finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void getEmpsList() throws Exception{
+        SqlSessionFactory sf = getFactory();
+        SqlSession session = sf.openSession();
+        try {
+            DeptResultMap deptResultMap = session.getMapper(DeptResultMap.class);
+            Dept dept = deptResultMap.getDeptAndEmps(1);
+            System.out.println(dept);
+            System.out.println(dept.getEmps());
+        }finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void getEmpsListStep() throws Exception{
+        SqlSessionFactory sf = getFactory();
+        SqlSession session = sf.openSession();
+        try {
+            DeptResultMap deptResultMap = session.getMapper(DeptResultMap.class);
+            Dept dept = deptResultMap.getDeptAndEmpsStep(1);
+            System.out.println(dept.getDeptName());
+            //System.out.println(dept.getEmps());
         }finally {
             session.close();
         }

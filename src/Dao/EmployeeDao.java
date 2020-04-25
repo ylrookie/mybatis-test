@@ -35,4 +35,6 @@ public interface EmployeeDao {
     //查询多条数据返回map
     @MapKey("id")  //指定使用对象的那个属性作为map的key
     public Map<Integer,beansTest> getEmployeemoreReturnMap();
+
+
 }

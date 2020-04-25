@@ -1,9 +1,21 @@
 package mybatisCS;
 
+import java.util.List;
+
 public class Dept {
     private int deptId;
 
     private String deptName;
+
+    private List<beansTest> emps;
+
+    public List<beansTest> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<beansTest> emps) {
+        this.emps = emps;
+    }
 
     @Override
     public String toString() {

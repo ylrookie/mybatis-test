@@ -8,5 +8,37 @@
         select dept_id deptId,dept_name deptName from  tbl_dept where dept_id = #{id}
     </select>
 
+    <!-- public Dept getDeptAndEmps(Integer id); -->
+    <select id="getDeptAndEmps" resultMap="deptAndEmps">
+      select a.id,a.last_name,a.email,a.gender,a.dept_id aid,b.dept_id bid,b.dept_name from tbl_dept b left JOIN tbl_employee a on  a.dept_id = b.dept_id where b.dept_id = #{id}
+    </select>
+
+    <resultMap id="deptAndEmps" type="mybatisCS.Dept">
+        <id column="bid" property="deptId"/>
+        <result column="dept_name" property="deptName"/>
+        <collection property="emps" ofType="mybatisCS.beansTest">
+            <id column="id" property="id"/>
+            <result column="last_name" property="lastName"/>
+            <result column="email" property="email"/>
+            <result column="gender" property="gender"/>
+        </collection>
+    </resultMap>
+
+    <!-- 分布查询 -->
+    <!-- public Dept getDeptAndEmpsStep(Integer id); -->
+    <select id="getDeptAndEmpsStep" resultMap="myStep">
+      select dept_id ,dept_name from tbl_dept where dept_id = #{deptId}
+    </select>
+
+    <resultMap id="myStep" type="mybatisCS.Dept">
+        <id column="dept_id" property="deptId"/>
+        <result column="dept_name" property="deptName"/>
+        <!-- 分布查询 -->
+        <collection property="emps"
+                    select="Dao.EmployeeMapperResultMap.getEmpsByDeptId"
+                    column="dept_id">
+        </collection>
+    </resultMap>
+
 
 </mapper>

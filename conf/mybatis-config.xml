@@ -48,5 +48,6 @@
         <mapper resource="beansTestMapper.xml" />
         <mapper resource="EmployeeMapperResultMap.xml"/>
         <mapper resource="DeptResultMap.xml"/>
+        <mapper resource="EmployeeMapperResultMap.xml"/>
     </mappers>
 </configuration>
