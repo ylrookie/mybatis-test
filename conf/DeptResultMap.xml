@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 切记要将mapper映射文件配置到 mybatis-config.xml -->
+<mapper namespace="Dao.DeptResultMap">
+    <select id="getDeptById" resultType="mybatisCS.Dept">
+        select dept_id deptId,dept_name deptName from  tbl_dept where dept_id = #{id}
+    </select>
+
+
+</mapper>

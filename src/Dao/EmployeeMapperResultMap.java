@@ -8,4 +8,6 @@ public interface EmployeeMapperResultMap {
 
     public beansTest getEmployeeAndDept(Integer id);
 
+    public beansTest getEmployeeDeptStep(Integer id);
+
 }

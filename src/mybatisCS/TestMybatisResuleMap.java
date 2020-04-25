@@ -44,4 +44,18 @@ public class TestMybatisResuleMap {
             session.close();
         }
     }
+
+    @Test
+    public void getDeptSept() throws Exception{
+        SqlSessionFactory sf = getFactory();
+        SqlSession session = sf.openSession();
+        try {
+            EmployeeMapperResultMap em = session.getMapper(EmployeeMapperResultMap.class);
+            beansTest beans = em.getEmployeeDeptStep(123);
+            System.out.println(beans.getLastName());
+            //System.out.println(beans.getDept());
+        }finally {
+            session.close();
+        }
+    }
 }

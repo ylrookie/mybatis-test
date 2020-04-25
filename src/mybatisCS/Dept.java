@@ -1,24 +1,24 @@
 package mybatisCS;
 
 public class Dept {
-    private String id;
+    private int deptId;
 
     private String deptName;
 
     @Override
     public String toString() {
         return "Dept{" +
-                "id='" + id + '\'' +
+                "deptId=" + deptId +
                 ", deptName='" + deptName + '\'' +
                 '}';
     }
 
-    public String getId() {
-        return id;
+    public int getDeptId() {
+        return deptId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
     }
 
     public String getDeptName() {
