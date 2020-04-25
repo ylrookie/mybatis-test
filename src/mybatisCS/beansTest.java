@@ -8,6 +8,15 @@ public class beansTest {
     private String lastName;
     private String email;
     private Integer gender;
+    private Dept dept;
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
 
     public beansTest(Integer id, String lastName, String email, Integer gender) {
         this.id = id;
