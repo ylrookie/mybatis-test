@@ -42,5 +42,6 @@
     <!-- 引入SQL映射文件,Mapper映射文件 	-->
     <mappers>
         <mapper resource="beansTestMapper.xml" />
+        <mapper resource="EmployeeMapperResultMap.xml"/>
     </mappers>
 </configuration>
