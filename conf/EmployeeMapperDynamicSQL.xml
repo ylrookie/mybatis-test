@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.EmployeeMapperDynamicSQL">
+
+    <!-- public List<beansTest> getEmployeeConditionIfWhere(beansTest condition); -->
+    <select id="getEmployeeConditionIfWhere" resultType="mybatisCS.beansTest">
+        select id,last_name lastName,email,gender
+        from tbl_employee
+
+        <where> <!-- where标签可以解决第一个出现的and 或者 or展示问题 -->
+            <if test="id!=null">
+               and id = #{id}
+            </if>
+            <if test="lastName!=null and lastName!=''">
+                and last_name = #{lastName}
+            </if>
+            <if test="email!=null and email.trim()!=''">
+                and email = #{email}
+            </if>
+            <if test="gender == 0 or gender == 1">
+                and gender = #{gender}
+            </if>
+        </where>
+    </select>
+
+    <!-- public List<beansTest> getEmployeeConditionTrim(beansTest condition); -->
+    <select id="getEmployeeConditionTrim" resultType="mybatisCS.beansTest">
+        select id,last_name lastName,email,gender
+        from tbl_employee
+        <trim prefix="where"  suffixOverrides="and|or">
+            <!--
+            prefix:添加一个前缀
+            prefixOverrides：覆盖/取掉一个前缀
+            suffix：添加一个后缀
+            suffixOverrides：覆盖/取掉一个后缀
+            -->
+
+            <if test="id!=null">
+                id = #{id} and
+            </if>
+            <if test="lastName!=null and lastName!=''">
+                last_name = #{lastName} and
+            </if>
+            <if test="email!=null and email.trim()!=''">
+                email = #{email} and
+            </if>
+            <if test="gender == 0 or gender == 1">
+                gender = #{gender} and
+            </if>
+        </trim>
+    </select>
+
+    <select id="getEmployeeConditionByName" resultType="mybatisCS.beansTest">
+        select id,last_name,email,gender,dept_id from tbl_employee where last_name = '孙'
+    </select>
+
+    <!-- public List<beansTest> getEmployeeConditionByid(List<Integer> ids); -->
+    <select id="getEmployeeConditionByid" resultType="mybatisCS.beansTest">
+        <!--
+			select * from tbl_employee where id in(?,?,?);
+			select * from tbl_employee where id = ?  or id = ?  or id = ? ...
+		 -->
+        <!--
+            foreach：
+                collection:指定要迭代的集合
+                item: 当前从集合中迭代出的元素
+                open: 指定一个开始字符
+                close:指定一个结束字符
+                separator: 元素与元素之间的分隔符
+         -->
+      select id,last_name,email,gender from tbl_employee where id in
+      <foreach collection="ids" item="currid" open="(" close=")" separator=",">
+          #{currid}
+      </foreach>
+    </select>
+
+    <!--
+		public void addEmps(@Param("emps")List<Employee> emps );
+
+		添加:insert into tbl_employee(x,x,x) values(?,?,?),(?,?,?),(?,?,?)
+		删除:delete from tbl_employee where id in(?,?,?)
+
+		修改: update tbl_employee set  last_name = #{lastName} ...where id = #{id};
+			 update tbl_employee set  last_name = #{lastName} ...where id = #{id};
+			 update tbl_employee set  last_name = #{lastName} ...where id = #{id};
+		默认情况下， JDBCB不允许将多条SQL通过;拼成一个字符串。
+		可以在连接的url后面加上一个参数:  allowMultiQueries=true
+	 -->
+    <!-- public void insertEmployee(@Param("emps") List<beansTest> beans); -->
+    <insert id="insertEmployee" >
+        insert into tbl_employee(last_name,email,gender) value
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.lastName},#{emp.email},#{emp.gender})
+        </foreach>
+
+    </insert>
+
+    <!-- public void updateEmployee(@Param("upemps") List<beansTest> beans); -->
+    <update id="updateEmployee">
+        <foreach collection="upemps" item="up" separator=";">
+            update tbl_employee set last_name = #{up.lastName},email = #{up.email},gender=#{up.gender} where id = #{up.id}
+        </foreach>
+    </update>
+
+    <!-- public void UpdateEmployeeCondition(beansTest condition);-->
+    <update id="UpdateEmployeeCondition">
+
+            update tbl_employee
+            <set>
+                <if test="lastName!=null">
+                    last_name = #{lastName} ,
+                </if>
+                <if test="email!=null">
+                    email = #{email} ,
+                </if>
+                <if test="gender==0 or gender==1">
+                    gender = #{gender}
+                </if>
+            </set>
+            where id = #{id }
+
+    </update>
+
+    <select id="getEmpsByConditionChoose" resultType="mybatisCS.beansTest">
+        select id ,last_name, email, gender
+        from tbl_employee
+        where
+        <choose>
+            <when test="id!=null">
+                id= #{id}
+            </when>
+            <when test="lastName!=null">
+                last_name = #{lastName}
+            </when>
+            <when test="email!=null">
+                email = #{email}
+            </when>
+            <otherwise>
+                gender = 0
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

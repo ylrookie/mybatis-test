@@ -6,6 +6,7 @@
 <configuration>
     <!-- settings :包含了重要的设置项 -->
     <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <!-- 开启延迟加载 -->
         <setting name="lazyLoadingEnabled" value="true"/>
@@ -26,7 +27,7 @@
 
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_con" />
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_con?allowMultiQueries=true" />
                 <property name="username" value="root" />
                 <property name="password" value="123456" />
             </dataSource>
@@ -48,6 +49,6 @@
         <mapper resource="beansTestMapper.xml" />
         <mapper resource="EmployeeMapperResultMap.xml"/>
         <mapper resource="DeptResultMap.xml"/>
-        <mapper resource="EmployeeMapperResultMap.xml"/>
+        <mapper resource="EmployeeMapperDynamicSQL.xml"/>
     </mappers>
 </configuration>

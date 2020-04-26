@@ -82,7 +82,7 @@ public class TestMybatisResuleMap {
             DeptResultMap deptResultMap = session.getMapper(DeptResultMap.class);
             Dept dept = deptResultMap.getDeptAndEmpsStep(1);
             System.out.println(dept.getDeptName());
-            //System.out.println(dept.getEmps());
+            System.out.println(dept.getEmps());
         }finally {
             session.close();
         }

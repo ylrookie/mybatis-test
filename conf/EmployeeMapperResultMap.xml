@@ -66,7 +66,11 @@
     </resultMap>
     <!-- public List<beansTest> getEmpsByDeptId(Integer deptId); -->
     <select id="getEmpsByDeptId" resultType="mybatisCS.beansTest">
-        select id,last_name lastName,email,gender from tbl_employee where dept_id = #{id}
+        <include refid="selectEMployee"/> from tbl_employee where dept_id = #{id}
     </select>
+
+    <sql id="selectEMployee">
+        select id,last_name lastName,email,gender
+    </sql>
 
 </mapper>
