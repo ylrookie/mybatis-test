@@ -161,4 +161,5 @@ public class TestMybatisDynamicSQL {
             sqlSession.close();
         }
     }
+
 }
