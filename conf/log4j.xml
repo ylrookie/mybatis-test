@@ -12,6 +12,7 @@
  <logger name="java.sql">
    <level value="debug" />
  </logger>
+
  <logger name="org.apache.ibatis">
    <level value="info" />
  </logger>

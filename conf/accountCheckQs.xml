@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 切记要将mapper映射文件配置到 mybatis-config.xml -->
+<mapper namespace="Dao.accountCheckQs">
+
+    <insert id="insertSQL">
+        insert into tr_account_check_qs(BILL_DATE,BUSI_ID,ORDER_TYPE) value
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.billDate},#{emp.busiId},#{emp.orderType})
+        </foreach>
+    </insert>
+
+</mapper>

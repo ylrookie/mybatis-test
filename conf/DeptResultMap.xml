@@ -16,6 +16,7 @@
     <resultMap id="deptAndEmps" type="mybatisCS.Dept">
         <id column="bid" property="deptId"/>
         <result column="dept_name" property="deptName"/>
+
         <collection property="emps" ofType="mybatisCS.beansTest">
             <id column="id" property="id"/>
             <result column="last_name" property="lastName"/>
